@@ -11,7 +11,7 @@ import os
 import json
 from pandas.api.types import is_integer_dtype
 from IPython.display import display
-from mutagen.wave import WAVE
+import librosa
       
 def read_json_files(folder_path):
     folder_path = Path(folder_path)
@@ -84,8 +84,8 @@ def wav_files_len(wav_path):
         if file_name.endswith(".wav"):   # Only process wav files
             file_path = wav_path / file_name
             try:
-                audio = WAVE(file_path)
-                length_ms = audio.info.length * 1000  #finding duration in ms
+                y, sr = librosa.load(file_path, sr=None)  # keep original sample rate
+                length_ms = librosa.get_duration(y=y, sr=sr) * 1000  #finding duration in ms
                 all_data.append({"source_file": file_name, "length_ms": length_ms})
             except FileNotFoundError:
                 print(f"Error: The file at {file_path} was not found.")
@@ -93,8 +93,7 @@ def wav_files_len(wav_path):
                 print(f"Error: You don’t have permission to read {file_path}.")
             except Exception as e:
                 print(f"Unexpected error: {e}")
-    df = pd.DataFrame(all_data)
-    return df
+    return pd.DataFrame(all_data)
 
 def main():
     #saying the path to the training json folder in the SPRS folder
@@ -161,7 +160,7 @@ def main():
     # missing_e = df.loc[df["end"].isna()]
     # display(missing_e.describe(include="all"))
     
-    #checking whether the start and end timestamps are validz
+    #checking whether the start and end timestamps are valid
     #saying the path to the training json folder in the SPRS folder
     wav_path = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/SPRSound-main/BioCAS2022/train2022_wav")    
     wav_df=wav_files_len(wav_path)
@@ -180,6 +179,10 @@ def main():
     )
     # print(merged_df.info())
     # display(merged_df[["source_file", "start", "end", "type", "length_ms"]].head(10))
+   
+    #print(merged_df["length_ms"].unique())     #checking the number of files for each audio length
+    l_count=merged_df["length_ms"].value_counts()
+    print(l_count)
     
     #checking that the end times are less than the duration
     invalid_end=(merged_df["end"] > merged_df["length_ms"]).sum()
