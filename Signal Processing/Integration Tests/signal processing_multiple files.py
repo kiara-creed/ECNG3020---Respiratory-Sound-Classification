@@ -165,10 +165,10 @@ def main():
             segments= segment_data(data, df, sr)
             for seg in segments:
                 seg["signal"]=wav_filter(seg["signal"],sr)        #send the sampled data to the butterworth filter
-                std_data=zscore(seg["signal"])
-                show_compare(seg["signal"],std_data,json_path.name,seg["type"])
+                seg["signal"]=zscore(seg["signal"])
+                #show_compare(seg["signal"],std_data,json_path.name,seg["type"])
             SPRS_avg=1300
-            #segments=std_data(segments,sr, SPRS_avg)
+            segments=std_data(segments,sr, SPRS_avg)
             #print(segments)
     
         except FileNotFoundError:
