@@ -167,7 +167,7 @@ def main():
             #signal processing
             segments= segment_data(data, df, sr)
             for seg in segments:
-                filtered=wav_filter(seg["signal"],sr)        #send the sampled data to the butterworth filter
+                seg["signal"]=wav_filter(seg["signal"],sr)        #send the sampled data to the butterworth filter
                 #show_compare(seg["signal"],filtered)
             SPRS_avg=1300
             segments=std_data(segments,sr, SPRS_avg)
