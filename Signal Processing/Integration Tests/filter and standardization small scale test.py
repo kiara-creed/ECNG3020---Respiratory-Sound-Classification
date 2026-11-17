@@ -166,7 +166,7 @@ def main():
                 filtered=wav_filter(seg["signal"],sr)        #send the sampled data to the butterworth filter
                 show_compare(seg["signal"],filtered)
             SPRS_avg=1300
-            segments=std_data(segments,sr, SPRS_avg)
+            #segments=std_data(segments,sr, SPRS_avg)
             #print(segments)
     
         except FileNotFoundError:
