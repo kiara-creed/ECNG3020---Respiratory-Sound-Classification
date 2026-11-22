@@ -136,8 +136,8 @@ def show_compare(data, filtered, name, event_type):
 
 def main():
     #saying the path to the training json folder in the SPRS folder
-    wav_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/temp_wav")    
-    json_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/temp_json")    
+    wav_folder = Path("/temp_wav")    
+    json_folder = Path("/temp_json")    
     
     # Loop through all files in the json folder
     for json_path in json_folder.glob("*.json"):  # Only process JSON files
