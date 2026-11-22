@@ -138,8 +138,8 @@ def show_compare(data, filtered):
 
 def main():
     #saying the path to the training json folder in the SPRS folder
-    wav_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/SPRSound-main/BioCAS2022/train2022_wav")    
-    json_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/SPRSound-main/BioCAS2022/train2022_json")    
+    wav_folder = Path("SPRSound-main/BioCAS2022/train2022_wav")    
+    json_folder = Path("SPRSound-main/BioCAS2022/train2022_json")    
     
     pq_count=0      #counting rejected poor quality records
     missing_count=0 #counting any json files missing a wav file
