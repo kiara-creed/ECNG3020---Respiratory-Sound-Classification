@@ -81,7 +81,7 @@ def show_compare(data, filtered):
 
 def main():
     #saying the path to the training json folder in the SPRS folder
-    wav_path = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/SPRSound-main/BioCAS2022/train2022_wav/40919639_4.9_0_p4_1793.wav")    
+    wav_path = Path("SPRSound-main/BioCAS2022/train2022_wav/40919639_4.9_0_p4_1793.wav")    
     try:
         data, sr = librosa.load(wav_path, sr=8000)  #sampling the audio file at 8kHz
         print("sr: ",sr)     #print the sr to make sure it was right
