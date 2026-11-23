@@ -11,7 +11,7 @@ Each had the following contents:
   | Poor Quality Record |         | Poor Quality Record |
   |      CAS Record     |
   |      DAS Record     |         |      DAS Record     |
-It uses the code from the filter and standardization integration test with the normalization function added in.
+It uses the signal processing code with the feature extraction function added in.
 The code is meant to detect the missing wav file and skip the respective json file.
 Additionally, it should reject the poor quality record and its respective wav file.
 """
@@ -129,8 +129,8 @@ def plot_mel(mfccs,hop_l,sr):
 
 def main():
     #saying the path to the training json folder in the SPRS folder
-    wav_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/temp_wav")    
-    json_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/temp_json")    
+    wav_folder = Path("temp_wav")    
+    json_folder = Path("temp_json")    
     
     # Loop through all files in the json folder
     for json_path in json_folder.glob("*.json"):  # Only process JSON files
