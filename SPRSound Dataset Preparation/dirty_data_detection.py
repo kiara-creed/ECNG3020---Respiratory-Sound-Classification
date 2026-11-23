@@ -50,14 +50,14 @@ def read_json_files(folder_path):
 
     #Converting start and end timestamps to int
     #converting start to int
-    df["start"] = pd.to_numeric(df["start"].astype("string").str.strip(),errors="coerce").astype("Int64")
-    assert is_integer_dtype(df["start"].dtype)
+    final_df["start"] = pd.to_numeric(final_df["start"].astype("string").str.strip(),errors="coerce").astype("Int64")
+    assert is_integer_dtype(final_df["start"].dtype)
     #converting end to int
-    df["end"] = pd.to_numeric(df["end"].astype("string").str.strip(),errors="coerce").astype("Int64")
-    assert is_integer_dtype(df["end"].dtype)
+    final_df["end"] = pd.to_numeric(final_df["end"].astype("string").str.strip(),errors="coerce").astype("Int64")
+    assert is_integer_dtype(final_df["end"].dtype)
     #making sure the data type was changed
-    print(f"For the start category {df["start"].dtype}")  
-    print(f"For the end category {df["end"].dtype}")   
+    print(f"For the start category {final_df["start"].dtype}")  
+    print(f"For the end category {final_df["end"].dtype}")   
 
     return final_df
 
@@ -128,11 +128,19 @@ def main():
     print(f"For the start category {df["start"].unique()}")   
     print(f"For the end category {df["end"].unique()}")  
     
-    #finding the average event duration for the standardization step in signal processing
+    #looking for event duration info
     df["duration"] = df["end"]-df["start"]
     #print(df.info())
     print(df["duration"].describe())
     display(df[["start", "end", "duration"]].head(25))
+    
+    # Count events longer than 2 seconds (2000 ms) for the standardization step in signal processing
+    long_events = (df["duration"] > 2000).sum()
+    print(f"Events longer than 1.3 s: {long_events}")
+    print(f"Total events: {len(df)}")
+    print(f"Percentage: {100 * long_events / len(df):.2f}%")
+    
+    print(df["duration"].quantile([0.5, 0.75, 0.9, 0.95, 0.99]))
     
     #looking at min and max of start and end category
     print(f"For the start category {df["start"].describe()}")   #checking the data type of the start category
