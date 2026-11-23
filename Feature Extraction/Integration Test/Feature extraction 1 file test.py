@@ -129,8 +129,8 @@ def plot_mel(mfccs,hop_l,sr):
 
 def main():
     #saying the path to the training json folder in the SPRS folder
-    wav_path = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/SPRSound-main/BioCAS2022/train2022_wav/40638274_9.7_1_p3_1765.wav")    
-    file_folder = Path("C:/Users/kiara/Documents/ECNG/Y4S1/ECNG3020/SPRSound-main/BioCAS2022/train2022_json/40638274_9.7_1_p3_1765.json")    
+    wav_path = Path("SPRSound-main/BioCAS2022/train2022_wav/40638274_9.7_1_p3_1765.wav")    
+    file_folder = Path("SPRSound-main/BioCAS2022/train2022_json/40638274_9.7_1_p3_1765.json")    
     
     df = read_json_files(file_folder)
     
